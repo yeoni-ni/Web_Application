@@ -4,5 +4,5 @@ from django.shortcuts import render
 # Create your views here.
 
 def hello_world(request):
-    return HttpResponse('Hello World!')
-
+    # return HttpResponse('Hello World!') #단순 문자열 출력
+    return render(request,'base.html') # 함수인자, 만든 html 불러오기
