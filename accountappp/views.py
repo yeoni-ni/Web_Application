@@ -5,4 +5,4 @@ from django.shortcuts import render
 
 def hello_world(request):
     # return HttpResponse('Hello World!') #단순 문자열 출력
-    return render(request,'base.html') # 함수인자, 만든 html 불러오기
+    return render(request,'accountsappp/hello_world.html') # 함수인자, 만든 html 불러오기
