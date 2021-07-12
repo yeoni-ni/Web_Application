@@ -1,7 +1,9 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
+from django.urls import reverse
+
 from accountappp.models import HelloWorld
 
 
@@ -16,13 +18,10 @@ def hello_world(request):
         new_hello_world.text = temp
         new_hello_world.save()
 
-        # DB읽어오기(클래스 안 모든 오브젝트 불러오기)
-        hello_world_list = HelloWorld.objects.all()
+        # 재연결
+        return HttpResponseRedirect(reverse('accountapp:hello_world'))
 
-
-        return render(request, 'accountapp/hello_world.html',
-                      context={' hello_world_list': hello_world_list }) # 객체반환
     else:
         hello_world_list = HelloWorld.objects.all()
         return render(request, 'accountapp/hello_world.html',
-                      context={'hello_world_list': hello_world_list})
+                      context={'hello_world_list': hello_world_list })
