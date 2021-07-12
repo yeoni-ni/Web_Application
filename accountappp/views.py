@@ -10,7 +10,7 @@ def hello_world(request):
         temp = request.POST.get('input_text')
 
         return render(request, 'accountapp/hello_world.html',
-                      context={'text': 'temp'})
+                      context={'text': temp})
     else:
         return render(request, 'accountapp/hello_world.html',
                       context={'text': 'GET METHOD'})
