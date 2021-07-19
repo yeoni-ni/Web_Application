@@ -14,6 +14,7 @@ urlpatterns = [
     # 회원가입
     path('create/',AccountCreateView.as_view(),name='create'),
     # Detail
-    path('detail/<int:pk>', AccountDetailView.as_view(), name='detail')
-
+    path('detail/<int:pk>', AccountDetailView.as_view(), name='detail'),
+    # Update
+    path('update/<int:pk>', AccountCreateView.as_view(), name='update')
 ]
