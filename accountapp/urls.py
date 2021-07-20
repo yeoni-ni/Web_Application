@@ -13,7 +13,7 @@ urlpatterns = [
     path('logout/',LogoutView.as_view(),name='logout'),
     # 회원가입
     path('create/',AccountCreateView.as_view(),name='create'),
-    # Detail 회원정보
+    # Detail 회원정보보기
     path('detail/<int:pk>', AccountDetailView.as_view(), name='detail'),
     # Update 회원정보변경
     path('update/<int:pk>', AccountUpdateView.as_view(), name='update'),

@@ -14,21 +14,24 @@ from accountapp.models import HelloWorld
 def hello_world(request):
     # return HttpResponse('Hello World!') #단순 문자열 출력
     # 메서드 분류 해서 출력 위해 if 사용 (get, post)
-    if request.method == "POST":
+    if request.user.is_authenticated:
+        if request.method == "POST":
 
-        temp = request.POST.get('input_text')
+            temp = request.POST.get('input_text')
 
-        new_hello_world=HelloWorld()
-        new_hello_world.text = temp
-        new_hello_world.save()
+            new_hello_world=HelloWorld()
+            new_hello_world.text = temp
+            new_hello_world.save()
 
-        # 재연결
-        return HttpResponseRedirect(reverse('accountapp:hello_world'))
+            # 재연결
+            return HttpResponseRedirect(reverse('accountapp:hello_world'))
 
+        else:
+            hello_world_list = HelloWorld.objects.all()
+            return render(request, 'accountapp/hello_world.html',
+                          context={'hello_world_list': hello_world_list })
     else:
-        hello_world_list = HelloWorld.objects.all()
-        return render(request, 'accountapp/hello_world.html',
-                      context={'hello_world_list': hello_world_list })
+        return HttpResponseRedirect(reverse('accountapp:login'))
 
 
 class AccountCreateView(CreateView):
@@ -49,8 +52,31 @@ class AccountUpdateView(UpdateView):
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/update.html'
 
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return super().get(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return super().post(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
+
+
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/delete.html'
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return super().get(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return super().post(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
