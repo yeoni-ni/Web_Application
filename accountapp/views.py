@@ -9,14 +9,14 @@ from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
+from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountCreationForm
 from accountapp.models import HelloWorld
 
-# 커스텀된 url(accountapp의 명을 달리한 사람들 한에서) 접근위해선 인자를 작성해야함
+# 커스텀된 url(accountapp의 이름을 달리한 사람들 한에서) 접근위해선 인자를 작성해야함
 # @login_required(login_url=reverse_lazy('accountapp:login'))
 @login_required
 def hello_world(request):
-    # return HttpResponse('Hello World!') #단순 문자열 출력
     # 메서드 분류 해서 출력 위해 if 사용 (get, post)
     if request.method == "POST":
 
@@ -35,7 +35,6 @@ def hello_world(request):
                       context={'hello_world_list': hello_world_list })
 
 
-
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
@@ -46,6 +45,9 @@ class AccountDetailView(DetailView):
     model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
+
+# 메소드 데코레이터는 리스트도 받아 올 수 있음
+has_ownership =[login_required,account_ownership_required]
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
@@ -63,3 +65,4 @@ class AccountDeleteView(DeleteView):
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/delete.html'
+
