@@ -12,6 +12,13 @@
             {#   게시글 대표 이미지, 게시글 내용   #}
             <img src="{{ target_article.image.url }}" alt="">
             {{ target_article.content }}
+            {#    update 주소 가져오기   #}
+            <div>
+                <a href="{% url 'articleapp:update' pk=target_article.pk %}"
+                    class="btn btn-success rounded-pill px-5">
+                    Update
+                </a>
+            </div>
         </div>
     </div>
 
