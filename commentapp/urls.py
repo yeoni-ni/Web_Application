@@ -5,5 +5,5 @@ from commentapp.views import CommentCreateView, CommentDeleteView
 app_name = 'commentapp'
 urlpatterns = [
     path('create/', CommentCreateView.as_view(), name='create'),
-    path('delete<ink:pk>', CommentDeleteView.as_view(), name='delete')
+    path('delete/<int:pk>', CommentDeleteView.as_view(), name='delete'),
 ]
