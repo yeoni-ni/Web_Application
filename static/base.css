@@ -56,3 +56,10 @@
     border-radius: 1rem;
     margin: 1rem;
 }
+/*css 스타일 안에서 기기의 정보를 알 수 있음*/
+@media screen and (max-width: 500px) {
+    html {
+        /* 기본 폰트 사이즈는 16px */
+        font-size: 13px;
+    }
+}
