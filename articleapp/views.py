@@ -1,5 +1,4 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse_lazy, reverse
@@ -9,7 +8,7 @@ from django.views.generic.edit import FormMixin
 
 from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
-from articleapp.templates.articleapp.decorators import article_ownership_required
+from articleapp.decorators import article_ownership_required
 from commentapp.forms import CommentCreationForm
 
 
