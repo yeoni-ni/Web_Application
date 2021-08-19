@@ -11,3 +11,7 @@ class Project(models.Model):
     image = models.ImageField(upload_to='project/', null=False)
     # 개시판 생성 날짜
     created_at = models.DateTimeField(auto_now_add=True)
+
+    # project에서 어떤 값을 출력할 건지 설정
+    def __str__(self):
+        return f'{self.name}'

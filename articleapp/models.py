@@ -2,10 +2,15 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+from projectapp.models import Project
+
 
 class Article(models.Model):
     writer = models.ForeignKey(User, on_delete=models.SET_NULL,
                                related_name='article', null=True)
+    # 게시글-게시판 연결
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL,
+                                related_name='article', null=True)
     # 제목
     title = models.CharField(max_length=200, null=True)
     # 이미지
