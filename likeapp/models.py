@@ -10,5 +10,6 @@ class LikeRecord(models.Model):
                              related_name='like_record', null=False)
     article = models.ForeignKey(Article, on_delete=models.CASCADE,
                                 related_name='like_record', null=False)
+
     class Meta:
-        unique_together=['user', 'article']
+        unique_together = ['user', 'article']
