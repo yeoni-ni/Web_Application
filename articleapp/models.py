@@ -19,3 +19,6 @@ class Article(models.Model):
     content = models.TextField(null=True)
     # 게시글 시간 정보(언제 작성되었는지)
     created_at = models.DateField(auto_now_add=True, null=True)
+
+    # 좋아요 옵션
+    like = models.IntegerField(default=0)
