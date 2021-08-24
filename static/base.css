@@ -63,3 +63,12 @@
         font-size: 13px;
     }
 }
+
+a{
+  text-decoration: none;
+    color: black;
+}
+/* 마우스가 겹쳐있을 때 */
+a:hover {
+    color: black;
+}
