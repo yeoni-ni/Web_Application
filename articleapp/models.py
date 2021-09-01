@@ -10,7 +10,7 @@ class Article(models.Model):
                                related_name='article', null=True)
     # 게시글-게시판 연결
     project = models.ForeignKey(Project, on_delete=models.SET_NULL,
-                                related_name='article', null=True)
+                                related_name='article', null=True, blank=True)
     # 제목
     title = models.CharField(max_length=200, null=True)
     # 이미지
